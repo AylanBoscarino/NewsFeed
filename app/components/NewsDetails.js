@@ -3,9 +3,13 @@ import {  View, ActivityIndicator, ScrollView } from 'react-native';
 import { Card, Header, Text, Image } from 'react-native-elements';
 
 export default class NewsDetails extends Component {
+    static navigationOptions = {
+        title: '...'
+    }
     render() {
         // eslint-disable-next-line react/prop-types
-        const { article } = this.props;
+        const { navigation } = this.props;
+        const article = navigation.getParam('article', 'NO-ID');
         return (
             <ScrollView>
                 <Text h3>{article.title}</Text>

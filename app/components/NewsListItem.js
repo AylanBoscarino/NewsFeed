@@ -3,10 +3,21 @@ import { Text, View, StyleSheet } from 'react-native';
 import { ListItem } from 'react-native-elements';
 import PropTypes from 'prop-types';
 
+import NewsDetails from './NewsDetails';
+
 export default class NewsListItem extends Component {
     static propTypes = {
         article: PropTypes.object
     }
+
+    handleTouch = (article) => {
+        // console.log({article});
+        this.props.navigate(
+            'Details',
+            { article, title: article.title }
+        );
+    };
+
     render() {
         const { article } = this.props;
         return (
@@ -14,7 +25,7 @@ export default class NewsListItem extends Component {
                 <ListItem 
                     leftAvatar={{ source: { uri: article.urlToImage } }}
                     title={article.title}
-                    onPress={() => alert(article.url)}
+                    onPress={() => this.handleTouch(article)}
                 />
             </View>
         );
